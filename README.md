@@ -42,7 +42,7 @@ accesskey/secretaccesskey - programatic access
 ## EC2 - Elastic Cloud Compute
 Scale Up - Bigger/Beefier (quality) boxes
 Scale Out - Get more (quantity) boxes
-user data - bootstrap scripts for EC2 instances
+user data - bootstrap scripts for EC2 instances, run at root level
 ec2-user - default user on ec2 instance
 roles can be applied while ec2 instance running, they are applied immidiately
 
@@ -107,6 +107,12 @@ DBs available
  OLTP vs OLAP
  OLTP - Online Transaction Processing - Pulls up a row of data (simple, frequent)
  OLAP - Online Analytics Processing - running aggregate queries (complex, infrequent)
+ 
+ #### Working w/ RDS
+  - when initially creating RDS instance you provide server identifier, db name, username, password
+  - always given dns address as endpoint
+  - port 3306 is sql port
+  - make sure you open up ports in SGs
  
  ### Non-Relational Databases
  Don't have to define schema ahead of time

@@ -37,12 +37,14 @@ accesskey/secretaccesskey - programatic access
   - IAM is universal
   - Root account - email you registered with
   - New users have **NO PERMISSIONS** by default
+  - Know how to read JSON policies going into exam
   
 ## EC2 - Elastic Cloud Compute
 Scale Up - Bigger/Beefier (quality) boxes
 Scale Out - Get more (quantity) boxes
 user data - bootstrap scripts for EC2 instances
 ec2-user - default user on ec2 instance
+roles can be applied while ec2 instance running, they are applied immidiately
 
 - Pricing Options
   - On Demand
@@ -77,6 +79,12 @@ ec2-user - default user on ec2 instance
   - Cold HDD - Lowest cost, think file server
   - Magnetic - legacy, lowest cost of bootable types
   
+  Create a volume from encrypted snapshot, the volume will be encrypted
+  Create a volume from an unencrypted snapshot, the volume will be unencrypted
+  You can created encryted volumes
+  root device volume can be encrypted by an OS level application, or creating a snapshot -> create a copy of the snapshot and select encrypt -> create image
+  **ebs volume has to be in same az as ec2 instance**
+  
 ### ELB - Elastic Load Balancer
  - Application Load Balancer - Layer 7 - HTTP/S routing, URL matching/routing
  - Network Load Balancer - Layer 4 - Latency, extreme performance
@@ -86,9 +94,14 @@ ec2-user - default user on ec2 instance
 AWS DNS service
 Alias record - points to AWS resources
 Naked domain - aka Apex record - domain.com (no www)
+
+### CLI - Command Line Interface
+- Give users **least privilege** - minimum amount of access required
+- Create groups, then assign users to groups
   
   ### EC2 Exam Tips
   - If spot instance is terminated by amazon, you will **not** be charged for a partial hower. However if you termate the instance yourself, you will be charged for the **complete** hour in which the instance ran
   - Remember FIGHTDRMCPX
   - Remember EBS types and what they are used for
+  - always use roles over access keys
   

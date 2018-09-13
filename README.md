@@ -38,3 +38,45 @@ accesskey/secretaccesskey - programatic access
   - Root account - email you registered with
   - New users have **NO PERMISSIONS** by default
   
+## EC2 - Elastic Cloud Compute
+Scale Up - Bigger/Beefier (quality) boxes
+Scale Out - Get more (quantity) boxes
+
+- Pricing Options
+  - On Demand
+  - Reserved - contract 1 or 3 years
+    - Standard
+    - Convertible
+    - Scheduled
+  - Spot - bid pricing
+  - dedicated hosts - physical machine dedicated to you
+  
+  Instance Types
+  F - field programable gate array
+  I - high speed storage
+  G - graphics
+  H - high throughput
+  T - lowest cost (cheap)
+  D - dense storage
+  R - ram
+  M - main choice
+  C - compute optimized
+  P - gPu
+  X - xtreme memory
+  
+  ### EBS - Elastic Block Storage
+  Disk in the cloud, attachable to EC2
+  Root volume is where OS installed
+  
+  Types
+  - General Purpose - balance price + performance, <= 10,000IOPS
+  - Provisioned IOPS - relational dbs, > 10,000IOPS
+  - Throughput Optimized - big data, log processing, not boot volumes
+  - Cold HDD - Lowest cost, think file server
+  - Magnetic - legacy, lowest cost of bootable types
+  
+  ### EC2 Exam Tips
+  - If spot instance is terminated by amazon, you will **not** be charged for a partial hower. However if you termate the instance yourself, you will be charged for the **complete** hour in which the instance ran
+  - Remember FIGHTDRMCPX
+  - Remember EBS types and what they are used for
+  

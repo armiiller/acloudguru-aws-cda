@@ -95,6 +95,32 @@ AWS DNS service
 Alias record - points to AWS resources
 Naked domain - aka Apex record - domain.com (no www)
 
+### RDS - Relational Database Service
+DBs available
+ - MSSQL
+ - ORACLE
+ - MySQL
+ - PostgreSQL
+ - Amazon Aurora - Compatible with MySQL and PostgreSQL
+ - MariaDB
+ 
+ OLTP vs OLAP
+ OLTP - Online Transaction Processing - Pulls up a row of data (simple, frequent)
+ OLAP - Online Analytics Processing - running aggregate queries (complex, infrequent)
+ 
+ ### Non-Relational Databases
+ Don't have to define schema ahead of time
+  - DynamoDB
+  
+ ### Data Warehousing
+  - Redshift - OLAP
+  
+### Elasticache
+Offload performance from EC2 or common DB queries that don't change oftent
+ Types
+  - Memcached
+  - Redis
+
 ### CLI - Command Line Interface
 - Give users **least privilege** - minimum amount of access required
 - Create groups, then assign users to groups
@@ -104,4 +130,5 @@ Naked domain - aka Apex record - domain.com (no www)
   - Remember FIGHTDRMCPX
   - Remember EBS types and what they are used for
   - always use roles over access keys
+  
   

@@ -41,6 +41,8 @@ accesskey/secretaccesskey - programatic access
 ## EC2 - Elastic Cloud Compute
 Scale Up - Bigger/Beefier (quality) boxes
 Scale Out - Get more (quantity) boxes
+user data - bootstrap scripts for EC2 instances
+ec2-user - default user on ec2 instance
 
 - Pricing Options
   - On Demand
@@ -74,6 +76,16 @@ Scale Out - Get more (quantity) boxes
   - Throughput Optimized - big data, log processing, not boot volumes
   - Cold HDD - Lowest cost, think file server
   - Magnetic - legacy, lowest cost of bootable types
+  
+### ELB - Elastic Load Balancer
+ - Application Load Balancer - Layer 7 - HTTP/S routing, URL matching/routing
+ - Network Load Balancer - Layer 4 - Latency, extreme performance
+ - Classic Load Balancer - Layer 4 & 7 - HTTP/S, TCP, sticky sessions
+ 
+### Route53
+AWS DNS service
+Alias record - points to AWS resources
+Naked domain - aka Apex record - domain.com (no www)
   
   ### EC2 Exam Tips
   - If spot instance is terminated by amazon, you will **not** be charged for a partial hower. However if you termate the instance yourself, you will be charged for the **complete** hour in which the instance ran

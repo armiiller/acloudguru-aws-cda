@@ -90,6 +90,8 @@ roles can be applied while ec2 instance running, they are applied immidiately
  - Network Load Balancer - Layer 4 - Latency, extreme performance
  - Classic Load Balancer - Layer 4 & 7 - HTTP/S, TCP, sticky sessions
 
+ You can have multiple SSL certs per application load balancer
+
 ### Route53
 AWS DNS service
 Alias record - points to AWS resources
@@ -134,7 +136,7 @@ Read Replica - Performance
 Offload performance from EC2 or common DB queries that don't change oftent
  Types
   - Memcached - no replication, simple, scale out
-  - Redis - multi AZ w/ failover, sorting/ranking, pub/sub, data persistance
+  - Redis - multi AZ w/ failover, sorting/ranking, pub/sub, data persistence
 
 
 
@@ -147,3 +149,75 @@ Offload performance from EC2 or common DB queries that don't change oftent
   - Remember FIGHTDRMCPX
   - Remember EBS types and what they are used for
   - always use roles over access keys
+
+## S3 - Simple Storage Service
+Object Storage
+File Size - **0 Bytes** to 5TB
+Unlimited Storage Capacity
+S3 namespace is **universal** (https://<region>.amazonaws.com/<bucketname>)
+
+Data Consistency
+  - Read after write consistency for PUTS (creates)
+  - Eventual Consistency for overwrite PUTS and DELETES
+
+99.99% available (designed), 99.9% guaranteed
+99.999999999% durable (11 x 9s)
+
+### Performance
+100 PUT/LIST/DELETE
+<= 300 GET
+if going over these limits use Cloudfront / Transfer acceleration
+**prefix with random key names - for better IO**
+**Update** 3,500 PUTS/sec, 5,500 GETS/sec meaning previous random guidance is not applicable. July 2018 Test - Possibly still using old  values. Just be aware.
+
+### Security
+- By default, all newly created buckets are **private**
+- access
+    - Bucket policy (JSON) - bucket level
+    - Access Control List - object level
+- can be configured to create access logs
+
+### Encryption
+- Encryption in Transit (SSL/TLS)
+- At Rest
+    1. SSE-S3 - S3 Managed Keys
+    1. S3-KMS - AWS key management service
+    1. SSE-C - Server side encryption with Customer Provided Keys
+    1. Client Side Encryption (Encrypt before uploading)
+
+Headers
+  - x-amz-server-side-encryption
+      - AES256 (SSE-S3)
+      - ams:kms (SSE-KMS)
+
+you can enforce only encrypted objects be stored by making a bucket policy to deny any PUTS w/o the header
+
+### Tiered Storage
+  - S3 - 99.99% avail, 11 x 9s durable, loss of 2 facilities
+  - S3 - IA (Infrequently accessed)
+  - S3 - 1 zone IA - same as IA, only 99.5% avail. Cost 20% less than regular S3 - IA
+  - Reduced Redundancy storage 99.99% durable and avail - for easily reproducible data - going to be phased out, no longer recommended by aws
+  - * Glacier - not really S3, but used for archives (3-5 hour retrieval)
+
+### CORS
+Must be using s3 website url
+https://<bucketname>.s3-website.<region>.amazonaws.com
+
+Lifecycle Management - surprisingly wasn't touched on in this course
+
+### S3 Exam Tips
+**Not for OS or databases**
+Universal namespace
+Read S3 FAQ
+
+### Cloudfront
+CDN - Content Delivery Network
+Geographically distributed users
+Cloudfront - Faster Downloads
+S3 Transfer Acceleration - Faster Uploads
+Key Terminology
+  - Edge Location - where object is cached
+  - Origin - S3 Bucket, EC2 instance, ELB, Route53
+  - Distribution - network of edge locations
+    - Web Distribution (websites)
+    - RTMP (Real Time Messaging Protocol) - Media Streaming

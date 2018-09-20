@@ -152,7 +152,7 @@ Offload performance from EC2 or common DB queries that don't change oftent
 
 ## S3 - Simple Storage Service
 Object Storage
-File Size - **0 Bytes** to 5TB
+File Size - **0 Bytes** to 5TB, **single PUT request 5GB**
 Unlimited Storage Capacity
 S3 namespace is **universal** (https://<region>.amazonaws.com/<bucketname>)
 
@@ -221,3 +221,62 @@ Key Terminology
   - Distribution - network of edge locations
     - Web Distribution (websites)
     - RTMP (Real Time Messaging Protocol) - Media Streaming
+
+## Serverless
+
+### Lambda
+Under the Compute Services
+Event (trigger) driven compute service
+Supported Languages:
+  - Node.js
+  - Java
+  - Python
+  - C#
+  - Go
+
+#### Lambda Version Control
+Each lambda version has a unique arn and is **immutable**
+qualified arn - has version or **$LATEST** at the end
+unqualified arn - does not have version
+versioning can be use to do splits between traffic
+  - cannot split traffic to $latest, must first make alias to $latest and route traffic to alias
+
+#### Lambda Exam Tips
+- Scales out, not up
+- Functions are independent, 1 event = 1 Function
+- lambda is serverless
+- know which services are support serverless
+    - api gateway
+    - Lambda
+    - s3
+    - DynamoDB
+- functions can trigger other functions
+- debug lambda - aws xray
+- lambda can be used global resources, but live in a region
+- know triggers!
+    - API Gateway
+    - AWS IOT
+    - alexa skills kit
+    - alexa smart home
+    - cloudfront
+    - cloudwatch events
+    - cloudwatch logs
+    - code commit
+    - cognito sync trigger
+    - DynamoDB
+    - kinesis
+    - s3
+    - sns
+
+### API Gateway
+Features
+  - Scaling
+  - Throttling
+  - API Key
+  - CORS
+API caching - caching path responses for a ttl
+you can import apis from swagger files
+
+### Step Functions
+
+### X-Ray

@@ -278,5 +278,23 @@ API caching - caching path responses for a ttl
 you can import apis from swagger files
 
 ### Step Functions
+Visual and Test Serverlesss Applications
 
 ### X-Ray
+Collects data about applications
+Interceptors - trace http requests
+client handlers - instrument application and other aws services
+http client - instrument call to other http services
+xray supports all lambda languages
+ - java
+ - go
+ - nodejs
+ - python
+ - ruby
+ - .net
+integrates with
+ - elb
+ - lamba
+ - api gateway
+ - ec2
+ - beanstalk

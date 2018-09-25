@@ -132,6 +132,38 @@ Read Replica - Performance
  ### Data Warehousing
   - Redshift - OLAP
 
+### DynamoDB
+NoSQL db with single digit millisecond latency. fully managed
+no database schema upfront
+SSD storage
+3 az by default
+eventual (default) or strongly consistent reads
+Primary Keys
+ - Partition Key
+ - Composite Key (Partition Key + Sort Key)
+Supported document formats
+ - JSON
+ - HTML
+ - XML
+Fine Grain control using IAM condition parameter **dynamodb:LeadingKeys** to match partition key value to some security attribute
+
+#### Advanced Index
+Local Secondary Index
+ - can only be created when creating table
+ - same partition key different sort key
+Global Secondary Index
+ - can be added later
+ - different partition + sort key
+ 
+#### Scan vs Query
+Query - By Primary Key and optional sort key, results always sorted by sort key, ascending order, reverse order by setting **ScanIndexFoward** (yes on query op, not typo) to false. Queries by default eventually consistent.
+scan - examine all items in a table
+query more efficient than scan
+scan dumps table, then filters data
+by default all data attributes are returned, if you want specifics use the **ProjectionExpression**
+
+#### Provision Throughput
+
 ### Elasticache
 Offload performance from EC2 or common DB queries that don't change oftent
  Types
@@ -276,6 +308,11 @@ Features
   - CORS
 API caching - caching path responses for a ttl
 you can import apis from swagger files
+
+#### Advanced
+Can create / update apis using swagger
+API throttling 10,000 requests per second / 5000 concurrent requests per second
+can configure as SOAP passthrough
 
 ### Step Functions
 Visual and Test Serverlesss Applications

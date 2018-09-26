@@ -154,7 +154,7 @@ Local Secondary Index
 Global Secondary Index
  - can be added later
  - different partition + sort key
- 
+
 #### Scan vs Query
 Query - By Primary Key and optional sort key, results always sorted by sort key, ascending order, reverse order by setting **ScanIndexFoward** (yes on query op, not typo) to false. Queries by default eventually consistent.
 scan - examine all items in a table
@@ -162,14 +162,64 @@ query more efficient than scan
 scan dumps table, then filters data
 by default all data attributes are returned, if you want specifics use the **ProjectionExpression**
 
-#### Provision Throughput
+#### Provisioned Throughput
+Measured in Capacity Units (Read & Write)
+1 WCU - 1 x 1KB Write/Sec
+1 RCU - [1 x 4KB Strongly Consistent Read/Sec] or [2 x 4KB Eventually Consistent Read/Sec (default)]
+**must round up for calculations**
+
+#### DynamoDB Accelerator (DAX)
+In-memory cache for DynamoDB
+Only works for **reads**
+Delivers up to 10x read performances
+Caters to **eventually consistent reads**, not strongly consistent
 
 ### Elasticache
-Offload performance from EC2 or common DB queries that don't change oftent
+Offload performance from EC2 or common DB queries that don't change often
+good if db is **read heavy** and **doesnt change frequently**
  Types
-  - Memcached - no replication, simple, scale out
+  - Memcached - no replication, simple, scale out, no multi-az
   - Redis - multi AZ w/ failover, sorting/ranking, pub/sub, data persistence
+Strategies
+  - Lazy Loading - load data into cache only when necessary
+  - Write through - add/update data to cache whnever data is written into db
+TTL - Time to Live - number of seconds until the data expires
 
+### KMS - Key Management Service
+Managed service for encryption keys
+encryption keys for kms are **regional**
+CMK - Customer Master Key
+  - key material (customer or aws provided)
+  - can never be exported
+define **administrative** and **usage** permissions
+
+#### KMS API Calls
+**must know the following**
+aws kms encrypt
+aws kms decrypt
+aws kms re-encrypt
+aws kms enable-key-rotation
+
+#### Envelope Encryption
+Encrypt the Key
+CMS used to decrypt data key (envelope key)
+Envelope Key used to decrypt the data
+
+### SQS
+Distributed Message Queue System (Pull)
+Up to 256KB of text
+pull based
+kept up-to 14 days, default 4 days
+visibility timeout 30sec default, max 12 hrs
+long poll & short poll
+types
+  - standard - no order, possible to deliver multiple times
+  - fifo - order preserved, 300 transaction/sec
+
+### SNS
+Pub/Sub System (Push)
+
+### SES - Simple Email Service
 
 
 ### CLI - Command Line Interface

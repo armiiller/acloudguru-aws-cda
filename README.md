@@ -220,7 +220,15 @@ types
 Pub/Sub System (Push)
 
 ### SES - Simple Email Service
+Can be used to receive
 
+### Kinesis
+Steaming data (kilobytes)
+stored for 24hr (default) / up to 7d
+services
+  - streams - stored in shards
+  - firehose - higher level (no shards)
+  - analytics - sql query analyze data
 
 ### CLI - Command Line Interface
 - Give users **least privilege** - minimum amount of access required

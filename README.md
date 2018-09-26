@@ -92,6 +92,25 @@ roles can be applied while ec2 instance running, they are applied immidiately
 
  You can have multiple SSL certs per application load balancer
 
+### Elastic Beanstalk
+Higher level package for EC2, ELB, Auto Scaling
+Deploy Code, set & forget
+
+#### Updating EB
+Types
+  - All at once - downtime, all instances simultaneously
+  - Rolling - deploys in batches
+  - Rolling with additional batch - maintains full Capacity (make new ec2)
+  - Immutable - basically creates full fleet of new instances
+
+#### Advanced EB
+All done in **.ebextensions** folder, top level directory (yaml or json)
+files have **.config** extension
+
+#### EB + RDS
+Deleting Environment will delete RDS (advised to decouple these)
+
+
 ### Route53
 AWS DNS service
 Alias record - points to AWS resources

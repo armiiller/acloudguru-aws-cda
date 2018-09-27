@@ -234,6 +234,8 @@ long poll & short poll
 types
   - standard - no order, possible to deliver multiple times
   - fifo - order preserved, 300 transaction/sec
+ChangeMessageVisibility - API call to set length of time
+max long poll timeout - 20 sec
 
 ### SNS
 Pub/Sub System (Push)
@@ -412,3 +414,24 @@ integrates with
  - api gateway
  - ec2
  - beanstalk
+
+### CI (Continuous Integration)/ CD (Continuous Delivery/Deployment)
+Continuous Delivery - changes auto built/test but manual decision to deploy
+Continuous Deployment - Continuous Delivery + Auto Deploy when passing all tests
+**read practicing continuous integration continuous delivery on aws white paper**
+CodeCommit - git
+CodeBuild - build system
+CodeDeploy - deploy agent
+CodePipeline - gui tool for CI/CD
+
+#### CodeDeploy
+Deployment Approaches
+  - In-Place - aka "Rolling Update", not supported in lambda, rollback requires rollback deployment
+  - Blue/Green - change in elb setting, instant rollback and deploy
+Terminology
+  - Deployment Group - EC2 instances/Lambda functions to deploy to
+  - Deployment - process of applying new revision
+  - Deployment configuration - rules how to deploy, success and failure conditions
+  - AppSpecFile - actions CodeDeploy to execute
+  - Revision - Required files to deploy new version (appspec, app files, executables, config)
+  - Application - unique id for app to deploy

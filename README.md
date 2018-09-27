@@ -410,7 +410,7 @@ xray supports all lambda languages
  - .net
 integrates with
  - elb
- - lamba
+ - lambda
  - api gateway
  - ec2
  - beanstalk
@@ -422,7 +422,7 @@ Continuous Deployment - Continuous Delivery + Auto Deploy when passing all tests
 CodeCommit - git
 CodeBuild - build system
 CodeDeploy - deploy agent
-CodePipeline - gui tool for CI/CD
+CodePipeline - gui tool for CI/CD - automat end-to-end release process
 
 #### CodeDeploy
 Deployment Approaches
@@ -435,3 +435,9 @@ Terminology
   - AppSpecFile - actions CodeDeploy to execute
   - Revision - Required files to deploy new version (appspec, app files, executables, config)
   - Application - unique id for app to deploy
+
+##### Advanced Code Deploy
+AppSpec  
+
+#### CodePipeline
+Use S3 versioning when using CodePipeline

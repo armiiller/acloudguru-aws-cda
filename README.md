@@ -33,6 +33,25 @@ Can Skip
 username/password are used to log into the web console
 accesskey/secretaccesskey - programatic access
 
+### Advanced IAM
+  - Web Identity Federation - IdP Amazon, Facebook, Google given temp aws security credentials
+  - Amazon Cognito - recommended approach for Web Identity Federation, recommended particularly for mobile apps
+
+#### Cognito User Pools
+Cognito is Identity Broker
+User Pools - user directories used to manage sign-up and sign-in, JSON Web Tokens (JWTs)
+Identity Pools - unique identities for users
+Push Synchronization to send silent push notification of user data changes
+
+#### Advanced IAM policies
+Types
+  - Managed - created and administered by AWS, cannot change permission
+  - Customer Managed - created and administered by you, can change permission
+  - Inline - embeded within user, group or role - strict 1:1 relationship
+
+#### SAML
+Sign in url `https://signin.aws.amazon.com/saml`
+
 ### iam exam tips
   - IAM is universal
   - Root account - email you registered with
@@ -442,7 +461,7 @@ Structure depends on use
   - lambda - version, resources, hooks, written in YAML or JSON
     - BeforeAllowTraffic
     - AfterAllowTraffic
-  - ec2 - version, os, files, hooks, appspec.yml must be placed in **root directory**
+  - ec2 - version, os, files, hooks, appspec.yml must be placed in **root directory**, **YAML ONLY**
     - BeforeBlockTraffic - run task on instance before deregistered ELB
     - BlockTraffic - deregister
     - AfterBlockTraffic - run tasks on instance after deregistered from ELB

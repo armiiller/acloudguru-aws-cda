@@ -437,7 +437,59 @@ Terminology
   - Application - unique id for app to deploy
 
 ##### Advanced Code Deploy
-AppSpec  
+AppSpec defines parameters for CodeDeploy Deployment
+Structure depends on use
+  - lambda - version, resources, hooks, written in YAML or JSON
+    - BeforeAllowTraffic
+    - AfterAllowTraffic
+  - ec2 - version, os, files, hooks, appspec.yml must be placed in **root directory**
+    - BeforeBlockTraffic - run task on instance before deregistered ELB
+    - BlockTraffic - deregister
+    - AfterBlockTraffic - run tasks on instance after deregistered from ELB
+    - ApplicationStop - Gracefully stop application
+    - Download bundle - CodeDeploy download app to temp location
+    - BeforeInstall - time to backup current files
+    - Install - CodeDeploy overwrites application with new revision
+    - AfterInstall - post installation scripts (e.g. configuration task, file permissions)
+    - ApplicationStart - Restart services
+    - ValidateService - Any tests
+    - BeforeAllowTraffic
+    - AllowTraffic
+    - AfterAllowTraffic
+
+These are defined as the **"run order of hooks"**
+![Run Order of Hooks for a CodeDeploy In-Place Deployment](img/code-deploy-hooks.png)
 
 #### CodePipeline
 Use S3 versioning when using CodePipeline
+
+#### CodeBuild
+You can use a buildspec.yml in the root of source code directory or specify/override it in CodeBuild itself
+
+##### Docker
+_This is not AWS, but these commands will be on the test_
+
+`docker build -t mydockerrepo .`
+
+`docker tag mydockerrepo:latest remote/repo:lastest`
+
+`docker push remote/repo:lastest`
+
+### CloudFormation
+Infrastructure as Code (YAML or JSON)
+**Resources** only mandatory section
+**Transform** reference code outside cloudformation template file
+sections of template
+  - parameters
+  - conditions
+  - resources
+  - mappings
+  - transforms
+  - outputs
+
+#### Serverless Application Model (SAM)
+Extension to CloudFormation
+Simplified Syntax for APIs, Lambda Function, DynamoDB tables ect
+has own cli - sam cli
+  - `sam package` - package application and upload to S3
+  - `sam deploy` - deploys app using CloudFormation

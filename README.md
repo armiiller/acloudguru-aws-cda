@@ -203,7 +203,7 @@ by default all data attributes are returned, if you want specifics use the **Pro
 #### Provisioned Throughput
 Measured in Capacity Units (Read & Write)
 1 WCU - 1 x 1KB Write/Sec
-1 RCU - [1 x 4KB Strongly Consistent Read/Sec] or [2 x 4KB Eventually Consistent Read/Sec (default)]
+1 RCU - [4KB Strongly Consistent Read/Sec] or [8KB Eventually Consistent Read/Sec (default)]
 **must round up for calculations**
 
 #### DynamoDB Accelerator (DAX)
